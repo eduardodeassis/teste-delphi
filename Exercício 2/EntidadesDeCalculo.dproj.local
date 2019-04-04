@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/04/03 23:35:39.000.691,=D:\Infobits Informática\Desenvolvimento\Unit1.pas</Transaction>
+    <Transaction>2019/04/04 00:07:37.000.736,D:\Infobits Informática\Desenvolvimento\Unit1.pas=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\uEntidadesDeCalculo.pas</Transaction>
+    <Transaction>2019/04/04 00:07:37.000.736,D:\Infobits Informática\Desenvolvimento\Unit1.dfm=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\uEntidadesDeCalculo.dfm</Transaction>
+    <Transaction>2019/04/04 00:07:48.000.142,D:\Infobits Informática\Desenvolvimento\Project1.dproj=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\EntidadesDeCalculo.dproj</Transaction>
+    <Transaction>2019/04/04 00:34:19.000.050,=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\Unit1.pas</Transaction>
+    <Transaction>2019/04/04 00:34:32.000.226,D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\Unit1.pas=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\uEntidades.pas</Transaction>
+    <Transaction>2019/04/04 09:40:07.647,=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\Unit1.pas</Transaction>
+    <Transaction>2019/04/04 09:40:24.453,D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\uDM.pas=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\Unit1.pas</Transaction>
+    <Transaction>2019/04/04 09:40:24.453,D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\uDM.dfm=D:\Eduardo\Curriculos\Testes\Theos\Exercício 2\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

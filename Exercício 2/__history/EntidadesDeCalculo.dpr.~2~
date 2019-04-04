@@ -1,0 +1,14 @@
+program EntidadesDeCalculo;
+
+uses
+  Vcl.Forms,
+  uEntidadesDeCalculo in 'uEntidadesDeCalculo.pas' {FrmEntidadesDeCalculo};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFrmEntidadesDeCalculo, FrmEntidadesDeCalculo);
+  Application.Run;
+end.
