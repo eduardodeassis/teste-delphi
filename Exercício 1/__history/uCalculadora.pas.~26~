@@ -1,0 +1,100 @@
+unit uCalculadora;
+
+interface
+
+  type TCalculadora = class
+    private
+      valor, valorIgual :Double;
+      operacao :String;
+      primeiraVez :Boolean;
+      limparVisor :Boolean;
+    public
+      constructor Create();
+      function getValor :Double;
+      function getOperacao :String;
+      function getLimpaVisor :Boolean;
+      function Calculo(pValor :Double; pOperacao :String) :Double;
+      procedure Zerar;
+  end;
+
+implementation
+
+{ TCalculadora }
+
+function TCalculadora.Calculo(pValor: Double; pOperacao: String): Double;
+begin
+  if (pOperacao = '=') then
+  begin
+    if (valorIgual = 0) then
+    begin
+       valorIgual := pValor;
+    end
+    else
+    begin
+      pValor := valorIgual;
+    end;
+  end;
+
+  if (operacao = ' ') then
+  begin
+    valor := pValor;
+  end
+  else if (operacao = '+') then
+  begin
+    valor := valor + pValor;
+  end
+  else if (operacao = '-') then
+  begin
+    valor := valor - pValor;
+  end
+  else if (operacao = 'X') then
+  begin
+    valor := valor * pValor;
+  end
+  else if (operacao = '/') then
+  begin
+    valor := valor / pValor;
+  end;
+  //
+  if (pOperacao <> '=') then
+  begin
+    operacao := pOperacao;
+    valorIgual := 0;
+  end;
+  //
+  Result := valor;
+  primeiraVez := false;
+  limparVisor := true;
+end;
+
+constructor TCalculadora.Create();
+begin
+  Zerar;
+end;
+
+function TCalculadora.getLimpaVisor: Boolean;
+begin
+  Result := limparVisor;
+  limparVisor := false;
+end;
+
+function TCalculadora.getOperacao: String;
+begin
+  Result := operacao;
+end;
+
+function TCalculadora.getValor: Double;
+begin
+  Result := valor;
+end;
+
+procedure TCalculadora.Zerar;
+begin
+  valor := 0;
+  valorIgual := 0;
+  operacao := ' ';
+  primeiraVez := true;
+  limparVisor := true;
+end;
+
+end.

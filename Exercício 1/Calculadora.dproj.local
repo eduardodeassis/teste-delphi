@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/04/02 21:20:31.000.820,=D:\Infobits Informática\Desenvolvimento\Unit1.pas</Transaction>
+    <Transaction>2019/04/02 21:23:59.000.447,D:\Infobits Informática\Desenvolvimento\Unit1.pas=D:\Eduardo\Curriculos\Testes\Theos\Exercício 1\uFrmCalculadora.pas</Transaction>
+    <Transaction>2019/04/02 21:23:59.000.447,D:\Infobits Informática\Desenvolvimento\Unit1.dfm=D:\Eduardo\Curriculos\Testes\Theos\Exercício 1\uFrmCalculadora.dfm</Transaction>
+    <Transaction>2019/04/02 21:24:06.000.881,D:\Infobits Informática\Desenvolvimento\Project1.dproj=D:\Eduardo\Curriculos\Testes\Theos\Exercício 1\Calculadora.dproj</Transaction>
+    <Transaction>2019/04/03 20:13:31.000.771,=D:\Eduardo\Curriculos\Testes\Theos\Exercício 1\Unit1.pas</Transaction>
+    <Transaction>2019/04/03 20:23:43.000.088,D:\Eduardo\Curriculos\Testes\Theos\Exercício 1\Unit1.pas=D:\Eduardo\Curriculos\Testes\Theos\Exercício 1\uCalculadora.pas</Transaction>
+  </Transactions>
+</BorlandProject>
