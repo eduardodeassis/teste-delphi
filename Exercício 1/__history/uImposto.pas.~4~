@@ -1,0 +1,28 @@
+unit uImposto;
+
+interface
+
+type TImposto = class
+  private
+    FValorBruto :Double;
+    FValorImposto :Double;
+  public
+    property ValorBruto :Double read FValorBruto write FValorBruto;
+    property ValorImposto :Double read FValorImposto;
+
+    constructor Create();
+    function calcImpostoA : Double; virtual; abstract;
+    function calcImpostoB : Double; virtual; abstract;
+end;
+
+implementation
+
+{ TImposto }
+
+constructor TImposto.Create;
+begin
+  FValorBruto := 0;
+  FValorImposto := 0;
+end;
+
+end.

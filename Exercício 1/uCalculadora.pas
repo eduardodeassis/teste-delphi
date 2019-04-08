@@ -2,18 +2,23 @@ unit uCalculadora;
 
 interface
 
+  uses uImposto, System.SysUtils;
+
+  type TTipoOperacao = (toFirst, toSoma, toSubtracao, toMultiplicacao, toDivisao,
+                        toIgual, toImpostoA, toImpostoB, toImpostoC);
+
   type TCalculadora = class
     private
       valor, valorIgual :Double;
-      operacao :String;
+      operacao :TTipoOperacao;
       primeiraVez :Boolean;
       limparVisor :Boolean;
     public
       constructor Create();
       function getValor :Double;
-      function getOperacao :String;
+      function getOperacao :TTipoOperacao;
       function getLimpaVisor :Boolean;
-      function Calculo(pValor :Double; pOperacao :String) :Double;
+      function Calculo(pValor :Double; pOperacao :TTipoOperacao) :Double;
       function ImpostoA(pValor :Double) :Double;
       function ImpostoB(pValor :Double) :Double;
       function ImpostoC(pValor :Double) :Double;
@@ -24,21 +29,14 @@ implementation
 
 { TCalculadora }
 
-function TCalculadora.Calculo(pValor: Double; pOperacao: String): Double;
+function TCalculadora.Calculo(pValor: Double; pOperacao: TTipoOperacao): Double;
 begin
-  if (Pos(pOperacao, 'ABC')>0) then
+  if (pOperacao in [toImpostoA, toImpostoB, toImpostoC]) then
   begin
-    if (pOperacao = 'A') then
-    begin
-      valor := ImpostoA(pValor);
-    end
-    else if (pOperacao = 'B') then
-    begin
-      valor := ImpostoB(pValor);
-    end
-    else if (pOperacao = 'C') then
-    begin
-      valor := ImpostoC(pValor);
+    case pOperacao of
+      toImpostoA: valor := ImpostoA(pValor);
+      toImpostoB: valor := ImpostoB(pValor);
+      toImpostoC: valor := ImpostoC(pValor);
     end;
     Result := valor;
     primeiraVez := true;
@@ -46,7 +44,7 @@ begin
   end
   else
   begin
-    if (pOperacao = '=') then
+    if (pOperacao = toIgual) then
     begin
       if (valorIgual = 0) then
       begin
@@ -58,9 +56,9 @@ begin
       end;
     end;
     //
-    if (pOperacao <> '=') and (valorIgual > 0) then
+    if (pOperacao <> toIgual) and (valorIgual > 0) then
     begin
-      if (pOperacao = '/') then
+      if (pOperacao in [toMultiplicacao, toDivisao]) then
       begin
         pValor := 1;
       end
@@ -71,28 +69,28 @@ begin
       valorIgual := 0;
       operacao := pOperacao;
     end;
-    if (operacao = ' ') then
+    if (operacao = toFirst) then
     begin
       valor := pValor;
     end
-    else if (operacao = '+') then
+    else if (operacao = toSoma) then
     begin
       valor := valor + pValor;
     end
-    else if (operacao = '-') then
+    else if (operacao = toSubtracao) then
     begin
       valor := valor - pValor;
     end
-    else if (operacao = 'X') then
+    else if (operacao = toMultiplicacao) then
     begin
       valor := valor * pValor;
     end
-    else if (operacao = '/') then
+    else if (operacao = toDivisao) then
     begin
       valor := valor / pValor;
     end;
     //
-    if (pOperacao <> '=') then
+    if (pOperacao <> toIgual) then
     begin
       operacao := pOperacao;
       valorIgual := 0;
@@ -115,7 +113,7 @@ begin
   limparVisor := false;
 end;
 
-function TCalculadora.getOperacao: String;
+function TCalculadora.getOperacao: TTipoOperacao;
 begin
   Result := operacao;
 end;
@@ -126,25 +124,50 @@ begin
 end;
 
 function TCalculadora.ImpostoA(pValor: Double): Double;
+var
+  imposto :TImpostoExt;
 begin
-  Result := (pValor * (20/100)) - 500;
+  try
+    Result := 0;
+    imposto := TImpostoExt.Create;
+    Result := imposto.calcImpostoA(pValor);
+  finally
+    FreeAndNil(imposto);
+  end;
 end;
 
 function TCalculadora.ImpostoB(pValor: Double): Double;
+var
+
+  imposto :TImpostoExt;
 begin
-  Result := ImpostoA(pValor) - 15;
+  try
+    Result := 0;
+    imposto := TImpostoExt.Create;
+    Result := imposto.calcImpostoB(pValor);
+  finally
+    FreeAndNil(imposto);
+  end;
 end;
 
 function TCalculadora.ImpostoC(pValor: Double): Double;
+var
+  imposto :TImpostoExt;
 begin
-  Result := ImpostoA(pValor) + ImpostoB(pValor);
+  try
+    Result := 0;
+    imposto := TImpostoExt.Create;
+    Result := imposto.calcImpostoC(pValor);
+  finally
+    FreeAndNil(imposto);
+  end;
 end;
 
 procedure TCalculadora.Zerar;
 begin
   valor := 0;
   valorIgual := 0;
-  operacao := ' ';
+  operacao := toFirst;
   primeiraVez := true;
   limparVisor := true;
 end;

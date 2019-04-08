@@ -1,0 +1,148 @@
+unit uCalculadora;
+
+interface
+
+  type TTipoOperacao = (first, soma, subtracao, multiplicacao, divisao, igual,
+                        impostoA, ImpostoB, impostoC);
+
+  type TCalculadora = class
+    private
+      valor, valorIgual :Double;
+      operacao :TTipoOperacao;
+      primeiraVez :Boolean;
+      limparVisor :Boolean;
+    public
+      constructor Create();
+      function getValor :Double;
+      function getOperacao :String;
+      function getLimpaVisor :Boolean;
+      function Calculo(pValor :Double; pOperacao :TTipoOperacao) :Double;
+      function ImpostoA(pValor :Double) :Double;
+      function ImpostoB(pValor :Double) :Double;
+      function ImpostoC(pValor :Double) :Double;
+      procedure Zerar;
+  end;
+
+implementation
+
+{ TCalculadora }
+
+function TCalculadora.Calculo(pValor: Double; pOperacao: TTipoOperacao): Double;
+begin
+  if (pOperacao in [TTipoOperacao.impostoA, TTipoOperacao.ImpostoB, TTipoOperacao.impostoC]) then
+  begin
+    case pOperacao of
+      TTipoOperacao.impostoA: valor := ImpostoA(pValor);
+      TTipoOperacao.ImpostoB: valor := ImpostoB(pValor);
+      TTipoOperacao.impostoC: valor := ImpostoC(pValor);
+    end;
+    Result := valor;
+    primeiraVez := true;
+    limparVisor := true;
+  end
+  else
+  begin
+    if (pOperacao = igual) then
+    begin
+      if (valorIgual = 0) then
+      begin
+         valorIgual := pValor;
+      end
+      else
+      begin
+        pValor := valorIgual;
+      end;
+    end;
+    //
+    if (pOperacao <> igual) and (valorIgual > 0) then
+    begin
+      if (pOperacao = divisao) then
+      begin
+        pValor := 1;
+      end
+      else
+      begin
+        pValor := 0;
+      end;
+      valorIgual := 0;
+      operacao := pOperacao;
+    end;
+    if (operacao = first) then
+    begin
+      valor := pValor;
+    end
+    else if (operacao = soma) then
+    begin
+      valor := valor + pValor;
+    end
+    else if (operacao = subtracao) then
+    begin
+      valor := valor - pValor;
+    end
+    else if (operacao = multiplicacao) then
+    begin
+      valor := valor * pValor;
+    end
+    else if (operacao = divisao) then
+    begin
+      valor := valor / pValor;
+    end;
+    //
+    if (pOperacao <> igual) then
+    begin
+      operacao := pOperacao;
+      valorIgual := 0;
+    end;
+    //
+    Result := valor;
+    primeiraVez := false;
+    limparVisor := true;
+  end;
+end;
+
+constructor TCalculadora.Create();
+begin
+  Zerar;
+end;
+
+function TCalculadora.getLimpaVisor: Boolean;
+begin
+  Result := limparVisor;
+  limparVisor := false;
+end;
+
+function TCalculadora.getOperacao: String;
+begin
+  Result := operacao;
+end;
+
+function TCalculadora.getValor: Double;
+begin
+  Result := valor;
+end;
+
+function TCalculadora.ImpostoA(pValor: Double): Double;
+begin
+  Result := (pValor * (20/100)) - 500;
+end;
+
+function TCalculadora.ImpostoB(pValor: Double): Double;
+begin
+  Result := ImpostoA(pValor) - 15;
+end;
+
+function TCalculadora.ImpostoC(pValor: Double): Double;
+begin
+  Result := ImpostoA(pValor) + ImpostoB(pValor);
+end;
+
+procedure TCalculadora.Zerar;
+begin
+  valor := 0;
+  valorIgual := 0;
+  operacao := first;
+  primeiraVez := true;
+  limparVisor := true;
+end;
+
+end.

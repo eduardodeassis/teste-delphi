@@ -47,19 +47,32 @@ var
 
 implementation
 
+(*
+Erros encontrados:
+* Multiplicação não está funcionando. (Exemplo: 10+10 [Enter] * 2)
+* Criar uma super classe Imposto e criar herança com polimorfismo para calcular os impostos A, B e C.
+* Utilizar enumerador nas operações. type TTipoOperacao
+
+*)
+
 {$R *.dfm}
 
 procedure TfrmCalculadora.btnAdicaoClick(Sender: TObject);
 var
   valor, resultado :Double;
-  operacao :String;
+  operacao :TTipoOperacao;
 begin
   try
     valor := StrToFloat(edtVisor.Text);
-    operacao := TButton(Sender).Caption;
-    if (Pos('Imp', operacao)>0) then
-    begin
-       operacao := TButton(Sender).Hint;
+    case TButton(Sender).Tag of
+      0: operacao := toSoma;
+      1: operacao := toSubtracao;
+      2: operacao := toMultiplicacao;
+      3: operacao := toDivisao;
+      4: operacao := toIgual;
+      5: operacao := toImpostoA;
+      6: operacao := toImpostoB;
+      7: operacao := toImpostoC;
     end;
     resultado := Calculadora.Calculo(valor, operacao);
     edtVisor.Text := FloatToStr(resultado);

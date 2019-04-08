@@ -35,6 +35,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnVirgulaClick
   end
   object btnIgual: TSpeedButton
+    Tag = 4
     Left = 134
     Top = 299
     Width = 57
@@ -189,6 +190,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnAdicaoClick
   end
   object btnSubtracao: TSpeedButton
+    Tag = 1
     Left = 197
     Top = 236
     Width = 57
@@ -203,6 +205,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnAdicaoClick
   end
   object btnMultiplicacao: TSpeedButton
+    Tag = 2
     Left = 197
     Top = 173
     Width = 57
@@ -217,6 +220,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnAdicaoClick
   end
   object btnDivisao: TSpeedButton
+    Tag = 3
     Left = 197
     Top = 110
     Width = 57
@@ -245,6 +249,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnVirgulaClick
   end
   object btnImpostoA: TSpeedButton
+    Tag = 5
     Left = 8
     Top = 47
     Width = 57
@@ -260,6 +265,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnAdicaoClick
   end
   object btnImpostoB: TSpeedButton
+    Tag = 6
     Left = 71
     Top = 47
     Width = 57
@@ -275,6 +281,7 @@ object frmCalculadora: TfrmCalculadora
     OnClick = btnAdicaoClick
   end
   object btnImpostoC: TSpeedButton
+    Tag = 7
     Left = 134
     Top = 47
     Width = 57

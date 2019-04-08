@@ -3,7 +3,8 @@ program Calculadora;
 uses
   Vcl.Forms,
   uFrmCalculadora in 'uFrmCalculadora.pas' {frmCalculadora},
-  uCalculadora in 'uCalculadora.pas';
+  uCalculadora in 'uCalculadora.pas',
+  uImposto in 'uImposto.pas';
 
 {$R *.res}
 
